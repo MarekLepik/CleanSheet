@@ -1,0 +1,63 @@
+[
+  {
+    "id": 1,
+    "artistname": "Artist name",
+    "artworkname": "Artwork name",
+    "img": "/assets/post1.png",
+    "state": "Last sold",
+    "status": "unavailable",
+    "value": "0.15",
+    "currency": "XTZ"
+  },
+  {
+    "id": 2,
+    "artistname": "Artist name",
+    "artworkname": "Artwork name",
+    "img": "/assets/post2.png",
+    "state": "Last sold",
+    "status": "unavailable",
+    "value": "3.16",
+    "currency": "XTZ"
+  },
+  {
+    "id": 3,
+    "artistname": "Artist name",
+    "artworkname": "Artwork name",
+    "img": "/assets/post3.png",
+    "state": "Current bid",
+    "bidtime": "11h 17m 42s",
+    "status": "available",
+    "value": "2.37",
+    "currency": "XTZ"
+  },
+  {
+    "id": 4,
+    "artistname": "Artist name",
+    "artworkname": "Artwork name",
+    "img": "/assets/post4.png",
+    "state": "Reserve",
+    "status": "available",
+    "value": "4.15",
+    "currency": "XTZ"
+  },
+  {
+    "id": 5,
+    "artistname": "Artist name",
+    "artworkname": "Artwork name",
+    "img": "/assets/post5.png",
+    "state": "Last sold",
+    "status": "unavailable",
+    "value": "0.16",
+    "currency": "XTZ"
+  },
+  {
+    "id": 6,
+    "artistname": "Artist name",
+    "artworkname": "Artwork name",
+    "img": "/assets/post6.png",
+    "state": "Buy now",
+    "status": "available",
+    "value": "3.58",
+    "currency": "XTZ"
+  }
+]
