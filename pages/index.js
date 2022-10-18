@@ -19,6 +19,8 @@ import {
 } from "../actions";
 import Link from "next/link";
 import Header from "../components/Header";
+import Show from "../layouts/Show";
+import HomePage from "../layouts/HomePage";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -69,12 +71,8 @@ export default function Home() {
 
   return (
     <div>
-      <div>
-        <div>
-          <Header Tezos={Tezos} setTezos={setTezos} wallet={wallet} />
-        </div>
-        <div></div>
-      </div>
+      <Header Tezos={Tezos} setTezos={setTezos} wallet={wallet} />
+      <HomePage Tezos={Tezos} />
     </div>
   );
 }

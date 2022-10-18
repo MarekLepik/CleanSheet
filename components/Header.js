@@ -86,10 +86,6 @@ function Header({ Tezos, wallet, setTezos }) {
 export default Header;
 
 /*
-
-*/
-
-/*
       <div className="-m-2">
         <Link href="/">
           <img

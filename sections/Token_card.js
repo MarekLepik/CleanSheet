@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { Link } from "react-router-dom";
+
 const Token = ({
   item,
   onClick,
@@ -7,79 +10,77 @@ const Token = ({
   timeLeft,
   onClaim,
 }) => {
-  return (
-    <div className="ui fluid card">
-      <div className="image">
-        <img
-          onClick={onClick}
-          style={{ maxHeight: "200px", objectFit: "cover" }}
-          src={`https://ipfs.io/ipfs/${item.image.split("ipfs://")[1]}`}
-          alt={item.description}
-        />
-      </div>
-      <div className="content">
-        <div className="right floated">
-          Price:
-          <div style={{ color: "black" }}>{item.amount / 1000000.0} TEZ</div>
-        </div>
-        <div className="header">{item.name}</div>
-        <div className="meta">{item.symbol}</div>
-        <div className="description">
-          {item.description.length > 15
-            ? item.description.slice(0, 15) + "..."
-            : item.description}
-        </div>
-        <div className="bid">
-          {item.is_auction ? `Top bid is:  ${item.top_bid / 1000000} TEZ` : ""}
-        </div>
-        <div className="last-bid-time">
-          {/* TODO: refactor here */}
-          {item.active_auction
-            ? `Minutes until next bid:  ${
-                new Date(item.last_bid).getMinutes() -
-                  new Date().getMinutes() >=
-                0
-                  ? new Date(item.last_bid).getMinutes() -
-                    new Date().getMinutes()
-                  : 0
-              }`
-            : ""}
-        </div>
-        <div className="auction-timer">
-          {item.is_auction && item.active_auction
-            ? `Auction ends in: ${Math.floor(timeLeft / 86400000)} days, ${
-                Math.floor(Math.abs(timeLeft) / 1000 / 60 / 60) % 24
-              } hours, ${
-                Math.floor(Math.abs(timeLeft) / 1000 / 60) % 60
-              } minutes`
-            : ""}
-        </div>
-        <div className="tzkt">
-          <a href={`https://kathmandunet.tzkt.io/${tzktUrl}/operations`}>
-            Contract
-          </a>
+  return item.collectable ? (
+    item.is_auction ? (
+      //Item on auction and you can bid on it
+      <div className="bg-white pt-12 pb-8 pl-4 pr-4 shadow-md rounded-xl">
+        <div className="mx-auto space-y-4" key={item.id}>
+          <h2 className="bg-kanvas-blue rounded-2xl text-center text-white w-1/2 mx-auto -mt-14 mb-9">
+            {`${Math.floor(timeLeft / 86400000)} days, ${
+              Math.floor(Math.abs(timeLeft) / 1000 / 60 / 60) % 24
+            } hours, ${
+              Math.floor(Math.abs(timeLeft) / 1000 / 60) % 60
+            } minutes`}
+          </h2>
+          <div className="relative w-full h-72 mx-auto">
+            <Image
+              src={`https://ipfs.io/ipfs/${item.image.split("ipfs://")[1]}`}
+              alt={item.description}
+              objectFit="cover"
+              layout="fill"
+            />
+          </div>
+          <h2>{item.creator}</h2>
+          <h2>{item.name}</h2>
+          <p className="text-gray-300">
+            {item.is_auction ? "Current bid" : "Buy now"}
+          </p>
+          <h1 className="text-kanvas-blue text-xl font-bold">
+            {`${item.amount / 1000000.0}` + `TEZ`}
+          </h1>
         </div>
       </div>
-
-      <div className="extra content">
-        <span className="right floated">
-          <button
-            className={`ui basic button ${!item.collectable ? "disabled" : ""}`}
-            onClick={item.is_auction ? onBid : onCollect}
-          >
-            {item.collectable && !item.is_auction ? "Buy" : "Bid"}
-          </button>
-          <button
-            className={`ui basic button ${!item.collectable ? "disabled" : ""}`}
-            onClick={onClaim}
-          >
-            Claim item
-          </button>
-        </span>
-        <span>
-          Token ID:
-          <div style={{ color: "black" }}>{item.token_id}</div>
-        </span>
+    ) : (
+      //You can buy this item and its not on auction
+      <div className="bg-white pt-12 pb-8 pl-4 pr-4 shadow-md rounded-xl">
+        <div className="mx-auto space-y-4" key={item.id}>
+          <div className="relative w-full h-72 mx-auto">
+            <Image
+              src={`https://ipfs.io/ipfs/${item.image.split("ipfs://")[1]}`}
+              alt={item.description}
+              objectFit="cover"
+              layout="fill"
+            />
+          </div>
+          <h2>{item.creator}</h2>
+          <h2>{item.name}</h2>
+          <p className="text-gray-300">
+            {item.is_auction ? "Current bid" : "Buy now"}
+          </p>
+          <h1 className="text-kanvas-blue text-xl font-bold">
+            {`${item.amount / 1000000.0}` + `TEZ`}
+          </h1>
+        </div>
+      </div>
+    )
+  ) : (
+    //Item is not collectible - you cant buy nor bid on this
+    <div className="bg-white pt-12 pb-8 pl-4 pr-4 shadow-md rounded-xl">
+      <div className="mx-auto space-y-4" key={item.id}>
+        <div className="relative w-52 h-72 mx-auto">
+          <Image
+            src={`https://ipfs.io/ipfs/${item.image.split("ipfs://")[1]}`}
+            alt={item.description}
+            objectFit="cover"
+            layout="fill"
+          />
+        </div>
+        <h2>{item.creator}</h2>
+        <h2>{item.name}</h2>
+        <p className="text-gray-300">last sold</p>
+        <h1 className="text-kanvas-blue text-xl font-bold">
+          {`${item.amount / 1000000.0}` + `TEZ`}
+        </h1>
       </div>
     </div>
   );
