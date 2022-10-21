@@ -12,7 +12,7 @@
     "@airgap/beacon-sdk": "^3.2.0",
     "@reduxjs/toolkit": "^1.8.6",
     "@tailwindcss/forms": "^0.5.3",
-    "@taquito/beacon-wallet": "^14.0.0",
+    "@taquito/beacon-wallet": "^11.0.2",
     "@taquito/taquito": "^14.0.0",
     "axios": "^1.1.2",
     "i": "^0.3.7",
